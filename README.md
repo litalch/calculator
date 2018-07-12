@@ -1,22 +1,25 @@
-# calculator
+# Calculator
 
-Lital Chaghbi ID: 39691365
-
-
-Installations:
-
-npm install mocha
-npm install chai
-npm install chai-json
-npm install supertest
-
-Test:
-
-npm test
+Lital Chaghbi. ID: 39691365
 
 
-run the server:
+## Installation
 
-PORT=3000 npm start
+    $ npm install mocha
 
-// "test": "NODE_ENV=test mocha — timeout 10000"
+    $ npm install chai
+
+    $ npm install chai-json
+
+    $ npm install supertest
+
+
+## Test:
+
+    $ npm test
+
+
+## Run the server:
+ 
+    $ PORT=3000 npm start
+
