@@ -8,12 +8,14 @@
     "chai": "^4.1.2",
     "chai-json": "^1.0.0",
     "express": "^4.16.3",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha",
+    "test": "NODE_ENV=test mocha",
     "start": "node app.js"
+   
   },
   "keywords": [],
   "author": "Lital Chaghbi",

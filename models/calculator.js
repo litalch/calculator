@@ -1,6 +1,4 @@
 
-
-
 var calculate = function(action,part1,part2)
 {
 	try{
@@ -40,11 +38,7 @@ var calculate = function(action,part1,part2)
 }
 
 
-var parseObject = function(jsonState)
-{
-	let state  = JSON.parse(jsonState);
-	return state;
-}
+
 var calculateNextState  = function(jsonState, input)
 {
 	let state;
@@ -68,31 +62,33 @@ var calculateNextState  = function(jsonState, input)
 		{
 			if(state.part2 == "")
 				return "ERR";
-			calculate = calculate(state.action,parseInt(state.part1),parseInt(state.part2));
-			state.part1 = calculate;
+			calculation = calculate(state.action,parseInt(state.part1),parseInt(state.part2));
+			state.part1 = calculation;
 			state.part2 = "";
 		}
 		state.display = state.part1;
 		state.action = input;
-		
+		state.equality_done = false;
 		break;
 	case "=":
-	 	if(state.part1 == "" || state.part2 == "" || !state.hasOwnProperty("part1") || !state.hasOwnProperty("part2")) 
+	 	if (state.part1 == "" || state.part2 == "" || !state.hasOwnProperty("part1") || !state.hasOwnProperty("part2")) 
 	 		return "ERR";
-		calculate = calculate(state.action,parseInt(state.part1),parseInt(state.part2));
-		state.part1 = calculate.toString();
+		calculation = calculate(state.action,parseInt(state.part1),parseInt(state.part2));
+		state.part1 = calculation.toString();
 		state.display = state.part1;
 		state.part2 = "";
 		state.action = "";
+		state.equality_done = true;
 		 
 	 	break;
 	default:
 	  	if (state.action == "" || !state.hasOwnProperty("action"))
 	  		{
 	  			//in case the action and part2 exists and are empty string it means that there was a calculation at part1 field. if the input is another number, should start a new calculation and part
-	  			if(state.hasOwnProperty("action") && state.action =="" && state.hasOwnProperty("part2") && state.part2 == "")
+	  			if(state.equality_done == true)
 		  		{
 					state.part1 ="";
+					
 		  		}
 		  		state.part1 = state.part1 + input;
 		  		state.display = state.part1;
@@ -102,6 +98,7 @@ var calculateNextState  = function(jsonState, input)
 	  			state.part2 = state.part2 ? state.part2 + input : input.toString();
 	  			state.display = state.part2;
 	  		}
+	  	state.equality_done = false;
 		break;
 	}
 	
