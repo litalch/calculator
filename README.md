@@ -30,3 +30,13 @@ Lital Chaghbi. ID: 39691365
 
     curl  -X POST http://localhost:3000/calculate -H 'content-type: application/json' -d '{"calculatorState": {"display":"5","part1":"12","part2":"5","action":"+"}, "input": "="}'
 
+
+## Docker
+
+#### Docker build
+
+    docker build  -t calculator .
+    
+#### Docker run
+    
+    docker run -t -p 3000:3000 calculator
