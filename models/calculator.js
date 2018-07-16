@@ -56,12 +56,19 @@ var calculateNextState  = function(jsonState, input)
 	case '-':
 	case '*':
 	case '/':
-		if(state.part1 == "")
-		 	return "ERR";
+		if(state.part1 == ""){
+		 	//state.display = "ERR";
+		 	//when receiving action as a 1st input, ignoring 
+		 	return state;
+		 }
 		if(state.hasOwnProperty("action") && state.action != "" )
 		{
 			if(state.part2 == "")
-				return "ERR";
+				{
+				//when receiving action after action, ignoring the latest action
+		 	//state.display = "ERR";
+		 	return state;
+		      }
 			calculation = calculate(state.action,parseInt(state.part1),parseInt(state.part2));
 			state.part1 = calculation;
 			state.part2 = "";
@@ -72,7 +79,11 @@ var calculateNextState  = function(jsonState, input)
 		break;
 	case "=":
 	 	if (state.part1 == "" || state.part2 == "" || !state.hasOwnProperty("part1") || !state.hasOwnProperty("part2")) 
-	 		return "ERR";
+	 		{
+		 	//state.display = "ERR";
+		 	//when receiving = after as a 1st input or after an action, ignoring 
+		 	return state;
+		 }
 		calculation = calculate(state.action,parseInt(state.part1),parseInt(state.part2));
 		state.part1 = calculation.toString();
 		state.display = state.part1;

@@ -179,7 +179,7 @@ describe('Calculator API Integration Tests', function() {
         }); 
   	  });
 	
-  	it('should get ERR on sending previous stateObject and input 0', function(done) { 
+  	it('should get the previous state on sending previous stateObject and input / (action after action)', function(done) { 
   		
 		request(app)
   		.post('/calculate')
@@ -189,7 +189,7 @@ describe('Calculator API Integration Tests', function() {
   			})
   		.end(function(err, res) { 
           expect(res.statusCode).to.equal(200); 
-          expect(res.body).to.equal("ERR"); 
+          expect(res.body).to.deep.include({'display':"62"}); 
           done(); 
         }); 
   	  });
