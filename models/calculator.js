@@ -65,8 +65,8 @@ var calculateNextState  = function(jsonState, input)
 		{
 			if(state.part2 == "")
 				{
-				//when receiving action after action, ignoring the latest action
-		 	//state.display = "ERR";
+				//when receiving action after action, change the action and return;
+		 	 state.action = input;
 		 	return state;
 		      }
 			calculation = calculate(state.action,parseInt(state.part1),parseInt(state.part2));

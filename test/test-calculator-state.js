@@ -79,8 +79,8 @@ describe('calculateNextState', function() {
 		expect(calculator.calculateNextState(null,"=")).to.include({display: ""});
 	})
 
-	it('should return the same state(ignoring the input) on receiving input + after -', () => {
-		expect(calculator.calculateNextState({display: "15" , part1: "15" ,part2:"", "action":"-"},"+")).to.include({display: "15" , part1: "15" ,part2:"", "action":"-"});
+	it('should return the same state with the new action(+) on receiving input + after -', () => {
+		expect(calculator.calculateNextState({display: "15" , part1: "15" ,part2:"", "action":"-"},"+")).to.include({display: "15" , part1: "15" ,part2:"", "action":"+"});
 	})
 
 	it('should return the same state(ignoring the input) on receiving input = after =', () => {
