@@ -40,3 +40,7 @@ Lital Chaghbi. ID: 39691365
 #### Docker run
     
     docker run -t -p 3000:3000 calculator
+
+#### Docker compose run
+  
+    docker-compose up
