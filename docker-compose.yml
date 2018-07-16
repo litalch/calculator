@@ -1,0 +1,25 @@
+version: "3"
+services:
+  currency-calculator:
+    image: calculator3
+
+  redis:
+    image: redis:alpine
+    ports:
+     - "6379:6379"
+  user-service:
+    image: webdevtoolsandtech/user-service
+    environment:
+     REDIS_ADDRESS: redis:6379
+  currency-frontend:
+    image: webdevtoolsandtech/currency-frontend
+  currency-backend:
+    image: webdevtoolsandtech/currency-backend
+    ports:
+     - "8000:80"
+    environment:
+      REDIS_ADDRESS: redis:6379
+      SESSION_SECRET: "lital"
+      USER_SERVICE_ADDRESS:  user-service:80
+      FRONTEND_ADDRESS: currency-frontend:80
+      CALCULATOR_ADDRESS:   currency-calculator:3000
